@@ -1,0 +1,32 @@
+{
+        "executionRoleArn": "arn:aws:iam::YourAccountID:role/ecsTaskExecutionRole",
+        "containerDefinitions": [
+            {
+                "logConfiguration": {
+                    "logDriver": "awslogs",
+                    "options": {
+                        "awslogs-group": "/ecs/cli-run-task-definition",
+                        "awslogs-region": "us-west-2",
+                        "awslogs-stream-prefix": "ecs"
+                    }
+                },
+                "cpu": 0,
+                "environment": [
+                    {
+                        "name": "LaceworkAccessToken",
+                        "value": "YourAccessToken"
+                    }
+                ],
+                "image": "YourAccountID.dkr.ecr.eu-central-1.amazonaws.com/customerdemo:latest",
+                "essential": true,
+                "name": "cli-rsfargate"
+            }
+        ],
+        "memory": "1GB",
+        "family": "cli-run-task-definition",
+        "requiresCompatibilities": [
+            "FARGATE"
+        ],
+        "networkMode": "awsvpc",
+        "cpu": "512"
+    }
